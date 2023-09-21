@@ -1,0 +1,124 @@
+{% extends 'smile/base.html' %}
+
+
+{% block title %}Dashboard - NiceAdmin Bootstrap Template{% endblock %}
+
+{% block content %}
+<div class="pagetitle">
+  <h1>Dashboard</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+      <li class="breadcrumb-item active">Dashboard</li>
+    </ol>
+  </nav>
+</div><!-- End Page Title -->
+
+<section class="section dashboard">
+
+
+
+
+  <div class="row">
+
+    <!-- Left side columns -->
+    <div class="col-lg-8">
+      <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group me-2">
+          <button href="#addClientModal" type="button" class="btn btn-primary" data-bs-toggle="modal">Add New Client</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 pb-5">
+          <!-- <a href="" class="btn btn-primary">ADD CUSTOMER</a> -->
+         
+        </div>
+      </div>
+    </div><!-- End Left side columns -->
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="row">
+    <div class="col-lg-12">
+
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">My Clients</h5>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus quisquam ducimus doloremque, laudantium
+            voluptate reiciendis, libero dolore pariatur culpa magni, explicabo enim placeat! Eligendi, dolor quasi.
+            Voluptatem praesentium aliquid magni?</p>
+
+          <!-- Table with stripped rows -->
+
+          <table class="table datatable">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Adress</th>
+                <th scope="col">Province</th>
+                <th>Phone Number</th>
+                <th>Email Address</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for client in clients %}
+              <tr>
+                <td>{{ client.id }}</td>
+                <td>{{ client.clientName }}</td>
+                <td>{{ client.addressLine1 }}</td>
+                <td>{{ client.province }}</td>
+                <td>{{ client.phoneNumber }}</td>
+                <td>{{ client.emailAddress }}</td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td colspan="5">No clients have been added yet.</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <!-- End Table with stripped rows -->
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- MODALS MODALS -->
+  <!-- Modals Start Here -->
+  <div class="modal modal-sheet py-5" tabindex="-1" id="addClientModal">
+    <div class="modal-dialog">
+      <div class="modal-content rounded-6 shadow">
+  
+        <form class="" action="#" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+  
+  
+        <div class="modal-header border-bottom-0">
+          <h5 class="modal-title">Add new client</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+  
+        <div class="modal-body py-0">
+  
+  
+          {{form.as_p}}
+  
+  
+        </div>
+        <div class="modal-footer flex-column border-top-0">
+          <button type="submit" class="btn btn-lg btn-primary w-100 mx-0 mb-2">Save changes</button>
+        </div>
+  
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

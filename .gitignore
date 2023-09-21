@@ -1,0 +1,52 @@
+# Django development files
+*.pyc
+*.pyo
+__pycache__/
+
+# Django settings
+*.env
+settings/local.py
+settings/production.py
+settings/*.secret
+
+# Database
+db.sqlite3
+*.db
+*.sqlite3
+
+# Static files
+# staticfiles/
+media/
+
+# Logs
+*.log
+
+# Generated files
+*.pyc
+*.pyo
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# IDE and editor specific files
+.idea/
+.vscode/
+
+# Dependency management
+venv/
+env/
+pipenv/
+
+# Environment-specific files
+.env
+
+# Compiled Python files
+*.pyc
+*.pyo
+
+# Mac OS specific files
+.DS_Store
+
+# Editor backup files
+*~

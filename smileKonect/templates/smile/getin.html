@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>{% block title %}Dashboard - NiceAdmin Bootstrap Template{% endblock %}</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="{% static 'img/favicon.png' %}" rel="icon">
+    <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="{% static 'smile/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet"> -->
+
+    <link href="{% static 'smile/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'smile/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+    <link href="{% static 'smile/vendor/quill/quill.snow.css' %}" rel="stylesheet">
+    <link href="{% static 'smile/vendor/quill/quill.bubble.css' %}" rel="stylesheet">
+    <link href="{% static 'smile/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+    <link href="{% static 'smile/vendor/simple-datatables/style.css' %}" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="{% static 'smile/css/style.css' %}" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+
+    <!-- Main Content -->
+
+    <div class="bg-gradient-primary" data-new-gr-c-s-check-loaded="14.1125.0" data-gr-ext-installed="">
+
+        <div class="container">
+            <style>
+                .bg-login-image {
+                    background: url(https://source.unsplash.com/K4mSJ7kc0As/600x800);
+                    background-position: center;
+                    background-size: cover;
+                }
+            </style>
+
+            <!-- Outer Row -->
+            <div class="row justify-content-center">
+
+                <div class="col-xl-10 col-lg-12 col-md-9">
+
+                    <div class="card o-hidden border-0 shadow-lg my-5">
+                        <div class="card-body p-0">
+                            <!-- Nested Row within Card Body -->
+                            <div class="row">
+                                <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                                <div class="col-lg-6">
+                                    <div class="p-5">
+                                        <div class="text-center">
+                                            <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                        </div>
+                                        <form method="post">
+                                            {% csrf_token %}
+                                            {{ form.as_p }}
+                                            <button type="submit">Login</button>
+                                        </form>
+                                        <hr>
+                                        <div class="pt-5 pb-5"></div>
+                                        <div class="text-center">
+                                            <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                        </div>
+                                        <div class="text-center">
+                                            <a class="small" href="register.html">Create an Account!</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    {% include 'smile/footer.html' %}
+
+    <!-- Vendor JS Files -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="{% static 'smile/vendor/apexcharts/apexcharts.min.js' %} "></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="{% static 'smile/vendor/chart.js/chart.umd.js' %}"></script>
+    <script src="{% static 'smile/vendor/echarts/echarts.min.js' %}"></script>
+    <script src="{% static 'smile/vendor/quill/quill.min.js' %}"></script>
+    <script src="{% static 'smile/vendor/simple-datatables/simple-datatables.js' %}"></script>
+    <script src="{% static 'smile/vendor/tinymce/tinymce.min.js' %}"></script>
+    <script src="{% static 'smile/vendor/php-email-form/validate.js' %}"></script>
+
+
+    <!-- Template Main JS File -->
+    <script src="{% static 'smile/js/main.js' %}"></script>
+
+</body>
+
+</html>

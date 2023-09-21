@@ -14,9 +14,9 @@
         <a class="nav-link " data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-menu-button-wide"></i><span>Smile Clients</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="components-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
+        <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
           <li>
-            <a href="{% url 'clients' %}" class="active">
+            <a href="{% url 'clients' %}">
               <i class="bi bi-circle"></i><span>Clients</span>
             </a>
           </li>
@@ -35,13 +35,13 @@
         </a>
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="forms-elements.html">
-              <i class="bi bi-circle"></i><span>Form Elements</span>
+            <a href="{% url 'products' %}">
+              <i class="bi bi-circle"></i><span>Product|Services</span>
             </a>
           </li>
           <li>
-            <a href="forms-layouts.html">
-              <i class="bi bi-circle"></i><span>Form Layouts</span>
+            <a href="#">
+              <i class="bi bi-circle"></i><span>Create Product</span>
             </a>
           </li>
           
@@ -56,13 +56,13 @@
         </a>
         <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="#">
-              <i class="bi bi-circle"></i><span>Chart.js</span>
+            <a href="{% url 'invoices' %}">
+              <i class="bi bi-circle"></i><span>INv</span>
             </a>
           </li>
           <li>
             <a href="#">
-              <i class="bi bi-circle"></i><span>ApexCharts</span>
+              <i class="bi bi-circle"></i><span>Unpaid Invoices</span>
             </a>
           </li>
           
@@ -100,6 +100,12 @@
           <span>Logout </span>
         </a>
       </li><!-- End Login Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="pages-contact.html">
+          <i class="bi bi-file-pdf"></i>
+          <span>REPORTS</span>
+        </a>
+      </li><!-- End Contact Page Nav -->
 
    
 

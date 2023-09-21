@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_bootstrap4',
     'crispy_forms',
     'smileKonect'
 ]
@@ -132,7 +133,7 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-CRISPY_TEMPLATE_PACK = 'bootstrap4' #b4
+
 
 
 MESSAGE_TAGS = {
@@ -143,3 +144,5 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4' #b4
+# CRISPY_TEMPLATE_PACK = 'uni_form'

@@ -39,7 +39,7 @@
 </head>
 
 <body>
-
+    {% load crispy_forms_tags %}
 
     <!-- Main Content -->
 
@@ -48,7 +48,7 @@
         <div class="container">
             <style>
                 .bg-login-image {
-                    background: url(https://source.unsplash.com/K4mSJ7kc0As/600x800);
+                    background: url("{% static 'smile/img/lady.webp' %}");
                     background-position: center;
                     background-size: cover;
                 }
@@ -71,16 +71,30 @@
                                         </div>
                                         <form method="post">
                                             {% csrf_token %}
-                                            {{ form.as_p }}
-                                            <button type="submit">Login</button>
+                                            <div class="mb-3">
+                                                <label for="{{ form.username.id_for_label }}"
+                                                    class="form-label">Username</label>
+                                                {{ form.username }}
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="{{ form.password.id_for_label }}"
+                                                    class="form-label">Password</label>
+                                                {{ form.password }}
+                                            </div>
+                                            <div class="d-grid gap-2 mt-4">
+                                                <button class="btn btn-primary" type="submit">Login</button>
+                                            </div>
                                         </form>
+
+
+
                                         <hr>
                                         <div class="pt-5 pb-5"></div>
                                         <div class="text-center">
-                                            <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                            <a class="small" href="#">Forgot Password?</a>
                                         </div>
                                         <div class="text-center">
-                                            <a class="small" href="register.html">Create an Account!</a>
+                                            <a class="small" href="#">Create an Account!</a>
                                         </div>
                                     </div>
                                 </div>
@@ -97,8 +111,24 @@
 
 
     <!-- Footer -->
-    {% include 'smile/footer.html' %}
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+        <div class="copyright">
+            &copy; Copyright <strong><span>SmileKonect Ltd</span></strong>. All Rights Reserved
+        </div>
+        <!-- <div class="credits">
+      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+    </div> -->
+    </footer><!-- End Footer -->
+    <style>
+        @media (min-width: 1200px) {
 
+            #main,
+            #footer {
+                margin-left: 2px !important;
+            }
+        }
+    </style>
     <!-- Vendor JS Files -->
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>

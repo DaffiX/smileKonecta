@@ -261,7 +261,7 @@ def viewDocumentInvoice(request, slug):
     filename = '{}.pdf'.format(invoice.uniqueId)
 
     #HTML FIle to be converted to PDF - inside your Django directory
-    template = get_template('invoice/pdf-template.html')
+    template = get_template('smile/pdf-template.html')
 
 
     #Render the HTML
@@ -283,8 +283,8 @@ def viewDocumentInvoice(request, slug):
     config = pdfkit.configuration(wkhtmltopdf='/usr/bin/wkhtmltopdf')
 
     #IF you have CSS to add to template
-    css1 = os.path.join(settings.CSS_LOCATION, 'assets', 'css', 'bootstrap.min.css')
-    css2 = os.path.join(settings.CSS_LOCATION, 'assets', 'css', 'dashboard.css')
+    # css1 = os.path.join(settings.CSS_LOCATION, 'smile', 'css', 'bootstrap.min.css')
+    # css2 = os.path.join(settings.CSS_LOCATION, 'smile', 'css', 'dashboard.css')
 
     #Create the file
     file_content = pdfkit.from_string(html, False, configuration=config, options=options)
@@ -331,7 +331,7 @@ def emailDocumentInvoice(request, slug):
     filename = '{}.pdf'.format(invoice.uniqueId)
 
     #HTML FIle to be converted to PDF - inside your Django directory
-    template = get_template('invoice/pdf-template.html')
+    template = get_template('smile/pdf-template.html')
 
 
     #Render the HTML
@@ -387,7 +387,7 @@ def deleteInvoice(request, slug):
 def companySettings(request):
     company = Setting.objects.get(clientName='Smile Connect')
     context = {'company': company}
-    return render(request, 'invoice/company-settings.html', context)
+    return render(request, 'smile/company-settings.html', context)
 
 def logout_view(request):
     logout(request)

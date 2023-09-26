@@ -45,10 +45,10 @@
         <td>{{invoice.dueDate}}</td>
         <td>{{invoice.status}}</td>
         <td>
-          <a href=""><button class="btn btn-danger"> DELETE </button></a>
+          <a href="{% url 'delete-invoice' invoice.slug %}"><button class="btn btn-danger"> DELETE </button></a>
         </td>
         <td>
-          <a href=""><button class="btn btn-primary"> VIEW </button></a>
+          <a href="{% url 'create-build-invoice' invoice.slug %}"><button class="btn btn-primary"> VIEW </button></a>
         </td>
       </tr>
         {% endfor %}
@@ -61,8 +61,8 @@
     <div class="col-lg-2">
 
     </div>
-    <div class="col-lg-8">
-      <h3>Start by Adding First Invoice</h3>
+    <div class="col-lg-8 pt-3">
+      <h3>No invoice added - Start by Adding First Invoice</h3>
    
     </div>
     <div class="col-lg-3">

@@ -1,0 +1,228 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>{% block title %}Dashboard - SmileKonect{% endblock %}</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="{% static 'img/favicon.png' %}" rel="icon">
+    <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="{% static 'smile/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet"> -->
+
+    <link href="{% static 'smile/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'smile/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+    <link href="{% static 'smile/vendor/quill/quill.snow.css' %}" rel="stylesheet">
+    <link href="{% static 'smile/vendor/quill/quill.bubble.css' %}" rel="stylesheet">
+    <link href="{% static 'smile/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+    <link href="{% static 'smile/vendor/simple-datatables/style.css' %}" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="{% static 'smile/css/style.css' %}" rel="stylesheet">
+
+
+</head>
+
+<body>
+    <style>
+        .table>:not(caption)>*>* {
+            background-color: var(--bs-table-bg);
+            border-bottom-width: 1px;
+            box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
+            padding: 0.72rem;
+        }
+
+        .table-borderless>:not(caption)>*>* {
+            border-bottom-width: 0;
+        }
+
+        .table {
+            --bs-table-bg: transparent;
+            --bs-table-accent-bg: #f9fbfd;
+            --bs-table-striped-color: #2e363f;
+            --bs-table-striped-bg: #f9fbfd;
+            --bs-table-active-color: #2e363f;
+            --bs-table-active-bg: rgba(0, 0, 0, .1);
+            --bs-table-hover-color: #2e363f;
+            --bs-table-hover-bg: #f9fbfd;
+            border-color: #e7eaf3;
+            color: #2e363f;
+            margin-bottom: 1rem;
+            vertical-align: top;
+            width: 100%;
+        }
+    </style>
+
+
+    <!-- Main Content -->
+    <main class="pt-4">
+
+        {% for message in messages %}
+        <div class="alert {{ message.tags }} alert-dismissible fade show mb-4" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+
+        {% block content %}
+
+
+        <div class="container">
+            <div class="col-md-9 mx-auto">
+                <div class="bg-gray-200" data-gr-ext-installed="">
+
+                    <div class="container py-3 py-lg-6">
+
+                        <div class="card shadow-secondary shadow-none-print rounded text-gray-800">
+
+                            <!-- invoice header -->
+                            <div class="card-header bg-gray-100 px-sm-5 px-lg-7">
+                                <div class="row">
+                                    <div class="col-12 col-sm-6 py-2 py-sm-4">
+                                        <img src="{{p_settings.ClientLogo}}" width="136" height="40" alt="...">
+                                    </div>
+                                    <div class="col-12 col-sm-6 py-2 py-sm-4 text-sm-end">
+                                        <h4 class="mb-0">Invoice: #{{ invoice.number }}</h4>
+                                        <p class="mb-0">{{invoice.date_created|date}}</p>
+                                        <p class="mb-0 bold">{{invoice.dueDate}}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- svg : divier -->
+                            <div class="divider-sm divider-point-bl bg-gray-100 hide-print"></div>
+
+                            <div class="row m-4 ">
+                                <div class="col-sm-6"></div>
+                                <div class="col-sm-6  pt-2 text-end">
+                                    <span class="btn-sm  btn-success">{{invoice.status}}</span>
+                                </div>
+                            </div>
+                            <!-- invoice body -->
+                            <div class="card-body px-sm-5 px-lg-7">
+
+                                <div class="row my-4 py-lg-5">
+                                    <!-- bill from -->
+                                    <div class="col-sm-6 mb-4">
+                                        <h6> <span class="bold">Bill From:</span> {{p_settings.clientName}}</h6>
+                                        <address>
+                                            {{p_settings.addressLine1}}<br>
+                                            {{p_settings.province}}, {{p_settings.postalCode}}<br>
+                                            {{p_settings.emailAddress}} <br />
+
+                                        </address>
+                                        <small class="text-gray-600">tel: {{p_settings.phoneNumber}}</small>
+                                    </div>
+                                    <!-- bill to -->
+                                    <div class="col-sm-6 mb-4 text-sm-end">
+                                        <h6>Bill To:</h6> <br>
+                                        <span>{{invoice.client.clientName}}</span>
+                                        <address>
+                                            {{invoice.client.addressLine1}}<br />
+                                            {{invoice.client.province}}, {{invoice.client.postalCode}}<br />
+                                            {{invoice.client.emailAddress}} <br />
+                                            {{invoice.client.phoneNumber}}
+                                        </address>
+                                    </div>
+                                </div>
+
+                                <!-- invoice items -->
+                                <div class="table-responsive mb-4">
+                                    <table class="table table-borderless table-nowrap border-bottom text-gray-800">
+                                        <thead class="border-top border-bottom text-gray-600">
+                                            <tr>
+                                                <th>Item</th>
+                                                <th class="text-start">Description</th>
+                                                <th class="text-center">Quantity</th>
+
+                                                <th class="text-end">Price</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            {% for product in products %}
+                                            <tr class="item">
+                                                <td><span class="bold">{{product.title}}</span></td>
+                                                <td>{{product.description}}</td>
+
+                                                <td>{{product.quantity}}</td>
+                                                <td class="text-end">{{product.currency}} {{product.price}}</td>
+
+
+                                            </tr>
+                                            {% endfor %}
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <!-- invoice total -->
+                                <div class="row justify-content-end">
+                                    <div class="col-12 col-sm-8 col-lg-7">
+                                        <dl class="row g-0 text-end">
+                                            <dt class="col-6">Subtotal:</dt>
+                                            <dd class="col-6">{{invoiceCurrency}} {{invoiceTotal}}</dd>
+                                            <!-- <dt class="col-6">Discount:</dt><dd class="col-6">-$0.00</dd>
+                        <dt class="col-6">VAT:</dt><dd class="col-6">$35.8</dd>
+                        <dt class="col-6">Tax:</dt><dd class="col-6">$0.00</dd> -->
+                                            <dt class="col-6">Total:</dt>
+                                            <dd class="col-6">{{invoiceCurrency}} {{invoiceTotal}}</dd>
+                                        </dl>
+                                    </div>
+                                </div>
+
+                                <tr>
+                                    <td>
+                                        <p>
+                                            {{invoice.notes}}
+                                        </p>
+                                    </td>
+                                </tr>
+
+                            </div>
+
+                        </div>
+
+                        <!-- print button -->
+                        <div class="d-inline-grid gap-auto-2 pt-4 hide-print">
+                            <a href="javascript:window.print();"
+                                class="btn btn-sm bg-white border transition-1 shadow-soft-hover">
+                                <svg class="transform-flip-x-rtl" height="18px" viewBox="0 0 16 16"
+                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                                    <path
+                                        d="M11 2H5a1 1 0 0 0-1 1v2H3V3a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2h-1V3a1 1 0 0 0-1-1zm3 4H2a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h1v1H2a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1z">
+                                    </path>
+                                    <path fill-rule="evenodd"
+                                        d="M11 9H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1zM5 8a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H5z">
+                                    </path>
+                                    <path d="M3 7.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"></path>
+                                </svg>
+                                <span>Print</span>
+                            </a>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+        {% endblock %}

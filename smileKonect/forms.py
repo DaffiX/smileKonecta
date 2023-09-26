@@ -10,16 +10,32 @@ import json
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Row, Column
 
+class BootstrapModelForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(BootstrapModelForm, self).__init__(*args, **kwargs)
+        for field in iter(self.fields):
+            self.fields[field].widget.attrs.update({
+                'class': 'form-control'
+            })
+
+class BootstrapForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        super(BootstrapForm, self).__init__(*args, **kwargs)
+        for field in iter(self.fields):
+            self.fields[field].widget.attrs.update({
+                'class': 'form-control'
+            })
+
 
 class DateInput(forms.DateInput):
     input_type = 'date'
 
-class LoginForm(forms.Form):
+class LoginForm(BootstrapForm):
     username = forms.CharField(max_length=150, label='Username')
     password = forms.CharField(widget=forms.PasswordInput, label='Password')
 
 
-class ClientForm(forms.ModelForm):
+class ClientForm(BootstrapModelForm):
     class Meta:
         model = Client
         fields = ['clientName', 'clientLogo', 'addressLine1', 'province', 'postalCode', 'phoneNumber', 'emailAddress', 'taxNumber']
@@ -30,7 +46,7 @@ class ClientForm(forms.ModelForm):
             'emailAddress': forms.EmailInput(attrs={'required': 'required'}),
         }
 
-class ProductForm(forms.ModelForm):
+class ProductForm(BootstrapModelForm):
     class Meta:
         model = Product
         fields = ['title', 'description', 'quantity', 'price', 'currency']
@@ -93,10 +109,10 @@ class InvoiceForm(forms.ModelForm):
         model = Invoice
         fields = ['title', 'dueDate', 'paymentTerms', 'status', 'notes']
 
-# class SettingsForm(forms.ModelForm):
-#     class Meta:
-#         model = Settings
-#         fields = ['clientName', 'clientLogo', 'addressLine1', 'province', 'postalCode', 'phoneNumber', 'emailAddress', 'taxNumber']
+class SettingsForm(forms.ModelForm):
+    class Meta:
+        model = Setting
+        fields = ['clientName', 'clientLogo', 'addressLine1', 'province', 'postalCode', 'phoneNumber', 'emailAddress', 'taxNumber']
 
 
 class ClientSelectForm(forms.ModelForm):

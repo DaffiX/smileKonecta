@@ -5,11 +5,12 @@ from django.urls import reverse #To|DO
 from django.utils import timezone
 from uuid import uuid4
 
+
 class Client(models.Model):
     PROVINCES = [
-        ('Gauteng', 'Gauteng'),
-        ('Free State', 'Free State'),
-        ('Limpopo', 'Limpopo'),
+    ('Dar es salaam', 'Dar es salaam'),  
+    ('Arusha', 'Arusha'),
+    ('Morogoro', 'Morogoro'),
     ]
 
     clientName = models.CharField(null=True, blank=True, max_length=200)
@@ -134,3 +135,22 @@ class Product(models.Model):
         self.last_updated = timezone.localtime(timezone.now())
 
         super(Product, self).save(*args, **kwargs)
+
+
+class Setting(models.Model):
+
+    PROVINCES = [
+    ('Dar es salaam', 'Dar es salaam'),  
+    ('Arusha', 'Arusha'),
+    ('Morogoro', 'Morogoro'),
+    ]
+
+    #Basic Fields
+    clientName = models.CharField(null=True, blank=True, max_length=200)
+    clientLogo = models.ImageField(default='default_logo.jpg', upload_to='company_logos')
+    addressLine1 = models.CharField(null=True, blank=True, max_length=200)
+    province = models.CharField(choices=PROVINCES, blank=True, max_length=100)
+    postalCode = models.CharField(null=True, blank=True, max_length=10)
+    phoneNumber = models.CharField(null=True, blank=True, max_length=100)
+    emailAddress = models.CharField(null=True, blank=True, max_length=100)
+    taxNumber = models.CharField(null=True, blank=True, max_length=100)

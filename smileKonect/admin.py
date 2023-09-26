@@ -14,6 +14,12 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ('title', 'description', 'invoice__invoice_number')
     prepopulated_fields = {'slug': ('title',)}
 
+class SettingsAdmin(admin.ModelAdmin):
+    # Define how the Settings model should be displayed in the admin interface
+    list_display = ('clientName', 'province', 'postalCode', 'phoneNumber', 'emailAddress', 'taxNumber')
+    # Customize other settings as needed
+
+
 @admin.register(Invoice)
 class InvoiceAdmin(admin.ModelAdmin):
     list_display = ('number', 'dueDate', 'status', 'client')
@@ -23,3 +29,4 @@ class InvoiceAdmin(admin.ModelAdmin):
 
 admin.site.register(Client, ClientAdmin)
 admin.site.register(Product, ProductAdmin)
+admin.site.register(Setting, SettingsAdmin)

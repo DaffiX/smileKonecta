@@ -71,16 +71,7 @@
                                         </div>
                                         <form method="post">
                                             {% csrf_token %}
-                                            <div class="mb-3">
-                                                <label for="{{ form.username.id_for_label }}"
-                                                    class="form-label">Username</label>
-                                                {{ form.username }}
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="{{ form.password.id_for_label }}"
-                                                    class="form-label">Password</label>
-                                                {{ form.password }}
-                                            </div>
+                                            {{ form.as_p }}
                                             <div class="d-grid gap-2 mt-4">
                                                 <button class="btn btn-primary" type="submit">Login</button>
                                             </div>

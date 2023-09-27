@@ -24,8 +24,6 @@ path('invoices/email-document/<slug:slug>',views.emailDocumentInvoice, name='ema
 
     path('dashboard/products',views.products, name='products'),
     
-    # path('client/<slug:slug>/', views.view_client, name='client-detail'),
-    # path('client/<slug:slug>/edit/', views.edit_client, name='edit_client'),
 
     #Company Settings Page
 path('company/settings',views.companySettings, name='company-settings'),

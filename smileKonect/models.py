@@ -1,9 +1,14 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 from django.utils.text import slugify
 from django.urls import reverse #To|DO
 from django.utils import timezone
 from uuid import uuid4
+
+class Activity(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    description = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
 
 
 class Client(models.Model):

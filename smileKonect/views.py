@@ -43,18 +43,54 @@ def login_view(request):
 # def user_dashboard(request):
 #     # Add logic to display user-specific dashboard content here
 #     return render(request, 'smile/dashboard.html')
-
+def log_activity(user, description):
+    activity = Activity(user=user, description=description)
+    activity.save()
+    
 @login_required
 def user_dashboard(request):
+  
+    clients_count = Client.objects.all().count()
+    invoices_count = Invoice.objects.all().count()
+    paid_invoices_count = Invoice.objects.filter(status='PAID').count()
+
+    # Calculate the total sales based on invoice amounts
+    invoices = Invoice.objects.all()
+    products_sold = Product.objects.filter(invoice__status='CURRENT').count()
+    # invoice_amount = 0.0
+    # invoiceCurrency = None  # Initialize currency variable
+
+    # # Assuming products is a list or queryset of product objects
+    # if len(products) > 0:
+    #     for x in products:
+    #         y = float(x.quantity) * float(x.price)
+    #         invoice_amount += y
+    #         invoiceCurrency = x.currency
+
+    # # Calculate the total revenue from all invoices
+    # total_revenue = invoice_amount
+
+    recent_activities = Activity.objects.order_by('-timestamp')[:5]  # Get the 5 most recent activities
     
+
+    # Create a dictionary to store all the metrics
+    context = {
+        'invoices': invoices,
+        'clients_count': clients_count,
+        'invoices_count': invoices_count,
+        'paid_invoices_count': paid_invoices_count,
+        'products_sold': products_sold,
+        'recent_activities': recent_activities,
+        # 'total_revenue': total_revenue
+     
+
+    }
 
     # Add any other logic to display user-specific dashboard content here
 
-    return render(request, 'smile/dashboard.html')
+    return render(request, 'smile/dashboard.html', context)
 
-# def clients(request):
-#     clients = Client.objects.all()
-#     return render(request, 'smile/clients.html', {'clients': clients})
+
 
 @login_required
 def clients(request):

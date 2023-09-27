@@ -47,7 +47,7 @@
                   <i class="bi bi-cart"></i>
                 </div>
                 <div class="ps-3">
-                  <h6>145</h6>
+                  <h6>{{ products_sold }}</h6>
                   <span class="text-success small pt-1 fw-bold">12%</span> <span
                     class="text-muted small pt-2 ps-1">increase</span>
 
@@ -83,7 +83,7 @@
                   <i class="bi bi-currency-dollar"></i>
                 </div>
                 <div class="ps-3">
-                  <h6>$3,264</h6>
+                  <h6>Tzs {{  total_revenue|floatformat:2 }}</h6>
                   <span class="text-success small pt-1 fw-bold">8%</span> <span
                     class="text-muted small pt-2 ps-1">increase</span>
 
@@ -120,7 +120,7 @@
                   <i class="bi bi-people"></i>
                 </div>
                 <div class="ps-3">
-                  <h6>1244</h6>
+                  <h6>{{ clients_count }}</h6>
                   <span class="text-danger small pt-1 fw-bold">12%</span> <span
                     class="text-muted small pt-2 ps-1">decrease</span>
 
@@ -239,47 +239,30 @@
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">Customer</th>
-                    <th scope="col">Product</th>
-                    <th scope="col">Price</th>
+                    <!-- <th scope="col">Product</th> -->
+                    <th scope="col">Due Date</th>
                     <th scope="col">Status</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row"><a href="#">#2457</a></th>
-                    <td>Brandon Jacob</td>
-                    <td><a href="#" class="text-primary">At praesentium minu</a></td>
-                    <td>$64</td>
-                    <td><span class="badge bg-success">Approved</span></td>
+
+              
+
+                    {% for invoice in invoices %}
+                  <tr scope="row">
+                    <td>{{invoice.number}}</td>
+                    <td>{{invoice.client.clientName}}</td>
+                    <!-- <td>{{invoice.product_count}}</td> -->
+                    
+                    <td>{{invoice.dueDate}}</td>
+                    <td><span class="badge bg-success">{{invoice.status}}</span></td>
+                    
+                    
                   </tr>
-                  <tr>
-                    <th scope="row"><a href="#">#2147</a></th>
-                    <td>Bridie Kessler</td>
-                    <td><a href="#" class="text-primary">Blanditiis dolor omnis similique</a></td>
-                    <td>$47</td>
-                    <td><span class="badge bg-warning">Pending</span></td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><a href="#">#2049</a></th>
-                    <td>Ashleigh Langosh</td>
-                    <td><a href="#" class="text-primary">At recusandae consectetur</a></td>
-                    <td>$147</td>
-                    <td><span class="badge bg-success">Approved</span></td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><a href="#">#2644</a></th>
-                    <td>Angus Grady</td>
-                    <td><a href="#" class="text-primar">Ut voluptatem id earum et</a></td>
-                    <td>$67</td>
-                    <td><span class="badge bg-danger">Rejected</span></td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><a href="#">#2644</a></th>
-                    <td>Raheem Lehner</td>
-                    <td><a href="#" class="text-primary">Sunt similique distinctio</a></td>
-                    <td>$165</td>
-                    <td><span class="badge bg-success">Approved</span></td>
-                  </tr>
+                    {% endfor %}
+            
+                  
+             
                 </tbody>
               </table>
 
@@ -315,14 +298,21 @@
           <h5 class="card-title">Recent Activity <span>| Today</span></h5>
 
           <div class="activity">
+            <!-- {% for activity in recent_activities %}
 
             <div class="activity-item d-flex">
-              <div class="activite-label">32 min</div>
+              <div class="activite-label">{{ activity.timestamp|date:"F d, Y H:i" }}</div>
               <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
               <div class="activity-content">
-                Quia quae rerum <a href="#" class="fw-bold text-dark">explicabo officiis</a> beatae
+                {{ activity.description }} <a href="#" class="fw-bold text-dark">explicabo officiis</a> beatae
               </div>
             </div><!-- End activity item-->
+            
+        {% empty %}
+            <p>No recent activities.</p>
+        {% endfor %} -->
+
+     
 
             <div class="activity-item d-flex">
               <div class="activite-label">56 min</div>

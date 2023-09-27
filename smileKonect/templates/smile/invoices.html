@@ -48,8 +48,9 @@
           <a href="{% url 'delete-invoice' invoice.slug %}"><button class="btn btn-danger"> DELETE </button></a>
         </td>
         <td>
-          <a href="{% url 'create-build-invoice' invoice.slug %}"><button class="btn btn-primary"> VIEW </button></a>
+          <a href="{% url 'view-pdf-invoice' invoice.slug %}"><button class="btn btn-primary"> VIEW </button></a>
         </td>
+        
       </tr>
         {% endfor %}
 
